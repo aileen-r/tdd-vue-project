@@ -1,10 +1,25 @@
 <template>
-    <div>User View - Hello World</div>
+    <div>
+        <UserSearchForm />
+        <UserProfile :user="user"/>
+    </div>
 </template>
 
 <script>
+import UserProfile from '@/components/UserProfile';
+import UserSearchForm from '@/components/UserSearchForm';
+
 export default {
-    name: 'UserView'
+    name: 'UserView',
+    data() {
+        return {
+            user: { name: '' }
+        };
+    },
+    components: {
+        UserSearchForm,
+        UserProfile
+    }
 }
 </script>
 
