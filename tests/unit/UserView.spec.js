@@ -1,16 +1,24 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
 
 import UserView from '@/views/UserView';
 import UserSearchForm from '@/components/UserSearchForm';
 import UserProfile from '@/components/UserProfile';
 
+import initialState from '@/store/state';
+import userFixture from './fixtures/user';
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
+
 describe('UserView', () => {
+  let state;
+
   // build function suggested over beforeEach() method
   const build = () => {
     const wrapper = shallowMount(UserView, {
-      data: () => ({
-        user: {}
-      })
+      localVue,
+      store: new Vuex.Store({ state })
     });
 
     return {
@@ -19,6 +27,10 @@ describe('UserView', () => {
       userProfile: () => wrapper.find(UserProfile)
     };
   };
+
+  beforeEach(() => {
+    state = { ...initialState }
+  });
 
   // what do we want to test?
 
@@ -42,14 +54,10 @@ describe('UserView', () => {
   // it binds all the correct prop data
   it('passes a user prop to user profile component', () => {
     // arrange
-    const { wrapper, userProfile } = build();
-    wrapper.setData({
-      user: {
-        name: 'Aileen'
-      }
-    });
+    state.user = userFixture;
+    const { userProfile } = build();
     // assert
-    expect(userProfile().vm.user).toBe(wrapper.vm.user);
+    expect(userProfile().vm.user).toBe(state.user);
   });
 
   // do events trigger correct behaviour

@@ -9,12 +9,14 @@
 import UserProfile from '@/components/UserProfile';
 import UserSearchForm from '@/components/UserSearchForm';
 
+import { mapState } from 'vuex';
+
 export default {
     name: 'UserView',
-    data() {
-        return {
-            user: { name: '' }
-        };
+    computed: {
+        ...mapState({
+            user: 'user'
+        })
     },
     components: {
         UserSearchForm,
