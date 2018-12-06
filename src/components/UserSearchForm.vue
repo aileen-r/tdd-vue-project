@@ -1,10 +1,18 @@
 <template>
-    <div>User Search Form</div>
+    <form @submit.prevent="$emit('submitted', username)">
+        <input type="text" v-model="username" />
+        <button type="submit">Submit</button>
+    </form>
 </template>
 
 <script>
 export default {
-    name: 'UserSearchForm'
+    name: 'UserSearchForm',
+    data() {
+        return {
+            username: ''
+        };
+    }
 }
 </script>
 
