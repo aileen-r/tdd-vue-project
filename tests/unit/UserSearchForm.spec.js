@@ -18,7 +18,7 @@ describe('UserSearchForm', () => {
   });
 
   it('renders main elements', () => {
-    const {input, button } = build();
+    const { input, button } = build();
     expect(input().exists()).toBe(true);
     expect(button().exists()).toBe(true);
   });

@@ -5,10 +5,10 @@ import api from '@/api';
 import userFixture from './fixtures/user';
 
 describe('store actions', () => {
-  let commit
+  let commit;
 
   beforeEach(() => {
-    commit = jest.fn()
+    commit = jest.fn();
   });
 
   it('searches for user', async () => {
