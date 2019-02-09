@@ -7,15 +7,14 @@
 
 <script>
 export default {
-    name: 'UserSearchForm',
-    data() {
-        return {
-            username: ''
-        };
-    }
-}
+  name: 'UserSearchForm',
+  data() {
+    return {
+      username: ''
+    };
+  }
+};
 </script>
 
 <style>
-
 </style>

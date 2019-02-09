@@ -12,27 +12,26 @@ import UserSearchForm from '@/components/UserSearchForm';
 import { mapState } from 'vuex';
 
 export default {
-    name: 'UserView',
+  name: 'UserView',
 
-    computed: {
-        ...mapState({
-            user: 'user'
-        })
-    },
+  computed: {
+    ...mapState({
+      user: 'user'
+    })
+  },
 
-    methods: {
-        searchUser(username) {
-            this.$store.dispatch('SEARCH_USER', { username })
-        }
-    },
-
-    components: {
-        UserSearchForm,
-        UserProfile
+  methods: {
+    searchUser(username) {
+      this.$store.dispatch('SEARCH_USER', { username });
     }
-}
+  },
+
+  components: {
+    UserSearchForm,
+    UserProfile
+  }
+};
 </script>
 
 <style>
-
 </style>
