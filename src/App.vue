@@ -6,7 +6,9 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <router-view/>
+    <b-container>
+      <router-view/>
+    </b-container>
   </div>
 </template>
 

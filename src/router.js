@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 const UserView = () => import('@/views/UserView');
+const ExtendView = () => import('@/views/ExtendView');
 
 Vue.use(Router);
 
@@ -11,6 +12,10 @@ export default new Router({
     {
       path: '/',
       component: UserView
+    },
+    {
+      path: '/extends',
+      component: ExtendView
     }
   ]
 });
