@@ -11,7 +11,7 @@ describe('ExtendedComponent', () => {
       propsData: props
     });
 
-  return {
+    return {
       wrapper,
       githubButton: () => wrapper.find('.github-button')
     };
@@ -37,21 +37,8 @@ describe('ExtendedComponent', () => {
     expect(githubButton().exists()).toBe(true);
   });
 
-  it('splits url prop correctly', () => {
+  it('displays path of button URL as button text', () => {
     const { githubButton } = build();
     expect(githubButton().html()).toContain('hello');
-    // there should be a better way to do this
   });
-
-
-  
-
-  // // it binds all the correct prop data
-  // it('passes a user prop to user profile component', () => {
-  //   // arrange
-  //   state.user = userFixture;
-  //   const { userProfile } = build();
-  //   // assert
-  //   expect(userProfile().vm.user).toBe(state.user);
-  // });
 });
