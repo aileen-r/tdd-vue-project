@@ -10,11 +10,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/github-user-search',
       component: UserView
     },
     {
-      path: '/extends',
+      path: '/extended-component-demo',
       component: ExtendView
     }
   ]
