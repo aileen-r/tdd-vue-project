@@ -1,7 +1,7 @@
 <template>
 <b-jumbotron header="Extending VueJs Components" :lead="$options.leadInText">
   <p>{{ paragraph }}</p>
-  <b-button variant="primary" :href="linkUrl">{{ linkText }}</b-button>
+  <b-button class="github-button" variant="primary" :href="linkUrl">{{ linkText }}</b-button>
 </b-jumbotron>
 </template>
 

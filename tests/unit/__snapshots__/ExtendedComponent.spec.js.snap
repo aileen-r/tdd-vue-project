@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExtendedComponent renders the component 1`] = `
+<b-jumbotron-stub header="Extending VueJs Components" lead="This lead-in text is an $option from the base component">
+  <p>This paragraph text is a computed prop from the base component. The GitHub URL below is passed as a prop to the base component. The link text is a computed prop on the extended. This "linkText" computed prop accesses a prop on the base component via the "this" keyword.</p>
+  <b-button-stub variant="primary" href="https://url.com/hello" class="github-button">hello</b-button-stub>
+</b-jumbotron-stub>
+`;
