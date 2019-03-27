@@ -1,13 +1,21 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import VueRouter from 'vue-router';
 
 import Navbar from '@/components/Navbar';
 
-describe('ExtendedComponent', () => {
+const localVue = createLocalVue();
+localVue.use(VueRouter);
+
+describe('Navbar', () => {
+  let route;
   // let props;
+  let router;
 
   // build function suggested over beforeEach() method
   const build = () => {
     const wrapper = shallowMount(Navbar, {
+      localVue,
+      router
       // propsData: props
     });
 
@@ -19,9 +27,14 @@ describe('ExtendedComponent', () => {
     };
   };
 
-  // beforeEach(() => {
-  //   props = { linkUrl: 'https://url.com/hello' };
-  // });
+  beforeEach(() => {
+    route = {
+      path: '/page',
+      name: 'Page'
+    };
+    router = new VueRouter([route]);
+    // props = { linkUrl: 'https://url.com/hello' };
+  });
 
   // does the component render
   it('renders the component', () => {
@@ -40,9 +53,20 @@ describe('ExtendedComponent', () => {
   });
 
   // is the nav list populated with all router views
+
   // are active router links highlighted?
+  it('highlights the active route', () => {
+    const { navItems } = build();
+    expect(navItems().html()).toContain(route.name);
+  });
+
   // does the brand link to homepage?
+
   // does click even init route change?
+
   // does nav toggle render only on tablet/mobile
+    // how do we test media queries?
+
   // does nav toggle click toggle nav-items display
+
 });

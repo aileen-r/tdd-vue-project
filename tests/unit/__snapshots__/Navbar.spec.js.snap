@@ -1,13 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExtendedComponent renders the component 1`] = `
+exports[`Navbar renders the component 1`] = `
 <b-navbar-stub toggleable="lg" type="dark" variant="info">
   <b-navbar-brand-stub id="brand" to="/">VueJS Sandbox</b-navbar-brand-stub>
   <b-navbar-toggle-stub target="nav_collapse" class="mobile-nav-toggle"></b-navbar-toggle-stub>
   <b-collapse-stub is-nav="" id="nav_collapse">
     <b-navbar-nav-stub class="nav-items">
-      <b-nav-item-stub to="/github-user-search">GitHub User Search</b-nav-item-stub>
-      <b-nav-item-stub to="/extended-component-demo">Extended Component Demo</b-nav-item-stub>
+      <b-nav-item-stub to="/github-user-search">
+        GitHub User Search
+      </b-nav-item-stub>
+      <b-nav-item-stub to="/extended-component-demo">
+        Extended Component Demo
+      </b-nav-item-stub>
     </b-navbar-nav-stub>
   </b-collapse-stub>
 </b-navbar-stub>

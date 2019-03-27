@@ -11,10 +11,12 @@ export default new Router({
   routes: [
     {
       path: '/github-user-search',
+      name: 'Github User Search',
       component: UserView
     },
     {
       path: '/extended-component-demo',
+      name: 'Extended Component Demo',
       component: ExtendView
     }
   ]

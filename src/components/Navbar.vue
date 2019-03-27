@@ -6,8 +6,9 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="nav-items">
-        <b-nav-item :to="'/github-user-search'">GitHub User Search</b-nav-item>
-        <b-nav-item :to="'/extended-component-demo'">Extended Component Demo</b-nav-item>
+        <b-nav-item v-for="route in links" :key="route.key" :to="route.url">
+          {{ route.text }}
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -15,6 +16,22 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+
+  data() {
+    return {
+      links: []
+    }
+  },
+
+  mounted() {
+    this.links = this.$router.options.routes.map(route => {
+      return {
+        key: route.path.replace('/', ''),
+        text: route.name,
+        url: route.path 
+      };
+    });
+  }
 }
 </script>
