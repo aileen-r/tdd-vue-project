@@ -1,21 +1,29 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import VueRouter from 'vue-router';
+import { mount, createLocalVue } from '@vue/test-utils';
+import BootstrapVue from 'bootstrap-vue';
+
+// import Router from 'vue-router';
 
 import Navbar from '@/components/Navbar';
 
 const localVue = createLocalVue();
-localVue.use(VueRouter);
+localVue.use(BootstrapVue);
+// localVue.use(Router);
 
 describe('Navbar', () => {
   let route;
-  // let props;
+  let routes;
   let router;
+  let links;
 
   // build function suggested over beforeEach() method
   const build = () => {
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = mount(Navbar, {
       localVue,
-      router
+      mocks: {
+        $router: router
+      }
+      // localVue,
+      // router
       // propsData: props
     });
 
@@ -23,7 +31,7 @@ describe('Navbar', () => {
       wrapper,
       brand: () => wrapper.find('#brand'),
       toggle: () => wrapper.find('.mobile-nav-toggle'),
-      navItems: () => wrapper.find('.nav-items')
+      navItems: () => wrapper.findAll('.nav-items')
     };
   };
 
@@ -32,7 +40,19 @@ describe('Navbar', () => {
       path: '/page',
       name: 'Page'
     };
-    router = new VueRouter([route]);
+    routes = [route];
+    router = {
+      options: {
+        routes
+      }
+    };
+    links = [
+      {
+        key: route.path.replace('/', ''),
+        text: route.name,
+        url: route.path
+      }
+    ]
     // props = { linkUrl: 'https://url.com/hello' };
   });
 
@@ -53,12 +73,21 @@ describe('Navbar', () => {
   });
 
   // is the nav list populated with all router views
+  it('populates nav list with links to all router views', () => {
+    const { wrapper, navItems } = build();
+    expect(wrapper.vm.links).toEqual(links);
+    // expect(navItems().
+    // TODO - stub router-link to remove error
+    // figure out how to find how WrapperArray contains items
+  });
 
   // are active router links highlighted?
-  it('highlights the active route', () => {
-    const { navItems } = build();
-    expect(navItems().html()).toContain(route.name);
-  });
+  // it('highlights the active route', () => {
+  //   const { wrapper, navItems } = build();
+  //   console.log(navItems()[0]);
+  //   // expect(navItems().contains(route.name)).toBe(true);
+  //   expect(wrapper.vm.links).toEqual(links);
+  // });
 
   // does the brand link to homepage?
 
