@@ -6,7 +6,7 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="nav-items">
-        <b-nav-item v-for="route in links" :key="route.key" :to="route.url" class="nav-item">
+        <b-nav-item v-for="route in links" :key="route.key" :to="route.url">
           {{ route.text }}
         </b-nav-item>
       </b-navbar-nav>

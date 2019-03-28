@@ -1,37 +1,42 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
-
-// import Router from 'vue-router';
+import Router from 'vue-router';
 
 import Navbar from '@/components/Navbar';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-// localVue.use(Router);
+localVue.use(BootstrapVue, Router);
+// const router = new Router({
+//   routes: [
+//     {
+//       path: '/page',
+//       name: 'Page'
+//     }
+//   ]
+// });
 
 describe('Navbar', () => {
   let route;
   let routes;
-  let router;
+  let mockRouter;
   let links;
 
   // build function suggested over beforeEach() method
   const build = () => {
     const wrapper = mount(Navbar, {
       localVue,
+      // router,
       mocks: {
-        $router: router
-      }
-      // localVue,
-      // router
-      // propsData: props
+        $router: mockRouter
+      },
+      stubs: ['router-link']
     });
 
     return {
       wrapper,
       brand: () => wrapper.find('#brand'),
       toggle: () => wrapper.find('.mobile-nav-toggle'),
-      navItems: () => wrapper.findAll('.nav-items')
+      navItems: () => wrapper.findAll('.nav-item')
     };
   };
 
@@ -41,7 +46,7 @@ describe('Navbar', () => {
       name: 'Page'
     };
     routes = [route];
-    router = {
+    mockRouter = {
       options: {
         routes
       }
@@ -56,13 +61,11 @@ describe('Navbar', () => {
     // props = { linkUrl: 'https://url.com/hello' };
   });
 
-  // does the component render
   it('renders the component', () => {
     const { wrapper } = build();
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  // does the component render the right thing
   it('renders branding, collapsible nav and toggle', () => {
     // arrange
     const { brand, toggle, navItems } = build();
@@ -72,22 +75,19 @@ describe('Navbar', () => {
     expect(navItems().exists()).toBe(true);
   });
 
-  // is the nav list populated with all router views
-  it('populates nav list with links to all router views', () => {
+  it('populates nav list with all route names', () => {
     const { wrapper, navItems } = build();
     expect(wrapper.vm.links).toEqual(links);
-    // expect(navItems().
-    // TODO - stub router-link to remove error
-    // figure out how to find how WrapperArray contains items
+    links.forEach((link, idx) => {
+      expect(navItems().at(idx).html()).toContain(link.text);
+    });
   });
 
-  // are active router links highlighted?
-  // it('highlights the active route', () => {
-  //   const { wrapper, navItems } = build();
-  //   console.log(navItems()[0]);
-  //   // expect(navItems().contains(route.name)).toBe(true);
-  //   expect(wrapper.vm.links).toEqual(links);
-  // });
+  it('highlights the active route', () => {
+    const { navItems } = build();
+    const activeItem = navItems().filter(navItem => navItem.html().includes('Page')).at(0);
+    console.log(activeItem.html())
+  });
 
   // does the brand link to homepage?
 
@@ -97,5 +97,4 @@ describe('Navbar', () => {
     // how do we test media queries?
 
   // does nav toggle click toggle nav-items display
-
 });

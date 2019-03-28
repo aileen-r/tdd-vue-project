@@ -1,6 +1,10 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import BootstrapVue from 'bootstrap-vue';
 
 import ExtendedComponent from '@/components/ExtendedComponent';
+
+const localVue = createLocalVue();
+localVue.use(BootstrapVue);
 
 describe('ExtendedComponent', () => {
   let props;
@@ -8,6 +12,7 @@ describe('ExtendedComponent', () => {
   // build function suggested over beforeEach() method
   const build = () => {
     const wrapper = shallowMount(ExtendedComponent, {
+      localVue,
       propsData: props
     });
 
