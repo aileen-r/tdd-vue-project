@@ -1,11 +1,11 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
-import Router from 'vue-router';
+// import Router from 'vue-router';
 
 import Navbar from '@/components/Navbar';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue, Router);
+localVue.use(BootstrapVue);
 // const router = new Router({
 //   routes: [
 //     {
@@ -86,7 +86,7 @@ describe('Navbar', () => {
   it('highlights the active route', () => {
     const { navItems } = build();
     const activeItem = navItems().filter(navItem => navItem.html().includes('Page')).at(0);
-    console.log(activeItem.html())
+    console.log(activeItem.find('router-link-stub'))
   });
 
   // does the brand link to homepage?
