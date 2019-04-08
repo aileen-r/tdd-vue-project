@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar renders the component 1`] = `
+<nav class="navbar navbar-dark bg-info navbar-expand-lg">
+  <router-link-stub id="brand" target="_self" class="navbar-brand">VueJS Sandbox</router-link-stub> <button type="button" aria-label="Toggle navigation" aria-controls="nav_collapse" aria-expanded="false" class="mobile-nav-toggle navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+  <div id="nav_collapse" class="navbar-collapse collapse" style="display: none;">
+    <ul class="navbar-nav nav-items"></ul>
+  </div>
+</nav>
+`;

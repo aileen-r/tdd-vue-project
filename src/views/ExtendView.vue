@@ -1,5 +1,5 @@
 <template>
-  <extended-component :linkUrl="$options.githubUrl"/>
+  <extended-component :linkUrl="$options.githubUrl" />
 </template>
 
 <script>
@@ -12,5 +12,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
