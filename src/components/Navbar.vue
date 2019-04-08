@@ -2,7 +2,7 @@
   <b-navbar toggleable="lg" type="dark" variant="info">
     <b-navbar-brand id="brand" :to="'/'">VueJS Sandbox</b-navbar-brand>
 
-    <b-navbar-toggle target="nav_collapse" class="mobile-nav-toggle"/>
+    <b-navbar-toggle target="nav_collapse" class="mobile-nav-toggle" />
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="nav-items">
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       links: []
-    }
+    };
   },
 
   mounted() {
@@ -29,9 +29,9 @@ export default {
       return {
         key: route.path.replace('/', ''),
         text: route.name,
-        url: route.path 
+        url: route.path
       };
     });
   }
-}
+};
 </script>

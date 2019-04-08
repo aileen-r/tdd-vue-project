@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <UserSearchForm @submitted="searchUser"/>
-        <UserProfile :user="user"/>
-    </div>
+  <div>
+    <UserSearchForm @submitted="searchUser" />
+    <UserProfile :user="user" />
+  </div>
 </template>
 
 <script>
@@ -33,5 +33,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

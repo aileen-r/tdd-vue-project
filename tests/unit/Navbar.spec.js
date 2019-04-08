@@ -57,7 +57,7 @@ describe('Navbar', () => {
         text: route.name,
         url: route.path
       }
-    ]
+    ];
     // props = { linkUrl: 'https://url.com/hello' };
   });
 
@@ -79,22 +79,30 @@ describe('Navbar', () => {
     const { wrapper, navItems } = build();
     expect(wrapper.vm.links).toEqual(links);
     links.forEach((link, idx) => {
-      expect(navItems().at(idx).html()).toContain(link.text);
+      expect(
+        navItems()
+          .at(idx)
+          .html()
+      ).toContain(link.text);
     });
   });
 
-  it('highlights the active route', () => {
-    const { navItems } = build();
-    const activeItem = navItems().filter(navItem => navItem.html().includes('Page')).at(0);
-    console.log(activeItem.find('router-link-stub'))
-  });
+  //TODO - figure out how to test against router
 
-  // does the brand link to homepage?
+  // it('highlights the active route', () => {
+  //   const { navItems } = build();
+  //   const activeItem = navItems().filter(navItem => navItem.html().includes('Page')).at(0);
+  // });
+
+  // it('brand links to homepage', () => {
+  //   const { brand } = build();
+  //   console.log(brand().html())
+  // })
 
   // does click even init route change?
 
   // does nav toggle render only on tablet/mobile
-    // how do we test media queries?
+  // how do we test media queries?
 
   // does nav toggle click toggle nav-items display
 });

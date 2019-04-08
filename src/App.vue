@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <navbar/>
-    <b-alert variant="success" show dismissible>App loaded with Bootstrap!</b-alert>
+    <navbar />
+    <b-alert variant="success" show dismissible
+      >App loaded with Bootstrap!</b-alert
+    >
     <b-container>
-      <router-view/>
+      <router-view />
     </b-container>
   </div>
 </template>
@@ -16,9 +18,8 @@ export default {
   components: {
     Navbar
   }
-}
+};
 </script>
-
 
 <style>
 #app {

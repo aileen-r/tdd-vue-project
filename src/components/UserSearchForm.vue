@@ -1,8 +1,8 @@
 <template>
-    <form @submit.prevent="$emit('submitted', username)">
-        <input type="text" v-model="username" />
-        <button type="submit">Submit</button>
-    </form>
+  <form @submit.prevent="$emit('submitted', username)">
+    <input type="text" v-model="username" />
+    <button type="submit">Submit</button>
+  </form>
 </template>
 
 <script>
@@ -16,5 +16,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
