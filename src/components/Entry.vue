@@ -1,13 +1,13 @@
 <template>
   <article class="entry">
     <h1>{{ fields.title }}</h1>
-    <prismic-rich-text :field="fields.content"/>
+    <prismic-rich-text :field="fields.content" />
   </article>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       fields: {
         title: null,
@@ -17,19 +17,18 @@ export default {
     };
   },
   methods: {
-    getContent () {
-      this.$prismic.client.getByID('XKuYuRAAAHcDMGyx')
-        .then((document) => {
-          console.log(document)
-          this.fields.title = document.data.title[0].text;
-          this.fields.content = document.data.content;
-        })
+    getContent() {
+      this.$prismic.client.getByID('XKuYuRAAAHcDMGyx').then(document => {
+        console.log(document);
+        this.fields.title = document.data.title[0].text;
+        this.fields.content = document.data.content;
+      });
     }
   },
-  created () {
+  created() {
     this.getContent();
   }
-}
+};
 </script>
 
 <style lang="scss">

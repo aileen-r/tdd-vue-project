@@ -1,6 +1,6 @@
 <template>
-  <div class='post-part single container'>
-    <prismic-rich-text :field="text"/>
+  <div class="post-part single container">
+    <prismic-rich-text :field="text" />
   </div>
 </template>
 
@@ -8,5 +8,5 @@
 export default {
   props: ['text'],
   name: 'text-slice'
-}
+};
 </script>

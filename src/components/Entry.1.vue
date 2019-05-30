@@ -1,11 +1,22 @@
 <template>
-  <div class="container">
-      <!-- Button to edit document in dashboard -->
-      <prismic-edit-button :documentId="documentId"/>
+<div>
+    <template v-if="loading">
+      <div class="d-flex justify-content-center mb-5">
+        <b-spinner type="grow" label="Loading..."></b-spinner>
+      </div>
+    </template>
+
+    <template v-else>
+      <!-- Add transition -->
+
+      <!-- Contains <a> with class="wio-link" -->
+      <prismic-edit-button :documentId="entryId" />
 
       <h1>{{ $prismic.richTextAsPlain(fields.title) }}</h1>
       <p>
-        <span>{{ Intl.DateTimeFormat('en-GB', dateOptions).format(new Date(fields.date)) }}</span>
+        <span>{{
+          Intl.DateTimeFormat('en-GB', dateOptions).format(new Date(fields.date))
+        }}</span>
         &nbsp;&middot;&nbsp;
         <span>{{ fields.location }}</span>
       </p>
@@ -14,17 +25,18 @@
       <section v-for="(slice, index) in slices" :key="'slice-' + index">
         <!-- Text slice template -->
         <template v-if="slice.slice_type === 'text'">
-          <text-slice :text="slice.primary.text"/>
+          <text-slice :text="slice.primary.text" />
         </template>
         <!-- Image with caption slice template -->
         <template v-else-if="slice.slice_type === 'image'">
-          <image-slice 
+          <image-slice
             :img="slice.primary.image"
-            :caption="slice.primary.caption"
+            :caption="slice.primary.image_caption"
           />
         </template>
       </section>
-  </div>
+    </template>
+</div>
 </template>
 
 <script>
@@ -36,44 +48,46 @@ export default {
     ImageSlice,
     TextSlice
   },
-  data () {
+  data() {
     return {
       dateOptions: { year: 'numeric', month: 'short', day: '2-digit' },
-      documentId: '',
+      entryId: '',
       fields: {
         title: null,
-        date: null,
+        date: null
       },
+      loading: true,
       slices: []
-    }
+    };
   },
   methods: {
-    getContent (uid) {
-      //Query to get post content
-      this.$prismic.client.getByUID('blog_entry', uid)
-        .then((document) => {
-          if (document) {
-            this.documentId = document.id
-            this.fields.title = document.data.title
-            this.fields.date = document.data.date
-            this.fields.location = document.data.location;
-            
-            //Set slices as variable
-            this.slices = document.data.body
-          } 
-          else {
-            //returns error page
-            this.$router.push({ name: 'not-found' })
-          }
-        })
+    async getContent(uid) {
+      const entry = await this.$prismic.client.getByUID('blog_entry', uid);
+      if (entry) {
+        this.entryId = entry.id;
+        this.fields.title = entry.data.title;
+        this.fields.date = entry.data.date;
+        this.fields.location = entry.data.location;
+        this.slices = entry.data.body;
+        this.loading = false;
+      } else {
+        this.$router.push({ name: 'not-found' });
+      }
     }
   },
-  created () {
-    this.getContent('hello-from-canada')
-  },
+  created() {
+    this.getContent('hello-from-canada');
+  }
   // beforeRouteUpdate (to, from, next) {
   //   this.getContent(to.params.uid)
   //   next()
   // }
-}
+};
 </script>
+<style>
+.wio-link {
+  float: right;
+  padding: 5px 10px;
+  margin: 8px 5px;
+}
+</style>
