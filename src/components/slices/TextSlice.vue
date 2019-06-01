@@ -1,5 +1,5 @@
 <template>
-  <div class="post-part single container">
+  <div class="entry text-slice">
     <prismic-rich-text :field="text" />
   </div>
 </template>
